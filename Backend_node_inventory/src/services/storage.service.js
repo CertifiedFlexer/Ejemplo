@@ -2,40 +2,38 @@ const { models } = require('../libs/sequelize');
 
 class StorageService {
     constructor() {
-
-        
-
+        this.model=models.Storage;
     }
 
     async getAll() {
-        const response=await models.Storage.findAll();
-        return response;
+        return await this.model.findAll({
+            include: [ {model: models.Product, as: 'product'}]
+        });
     }
 
     async getById(id) {
-        const storage=await models.Storage.findByPK({id});
-        if (!Storage){
-            console.log("Storage couldn't be found")
-        }
-            return Storage;
+        return await this.model.findByPk(id,{
+            include: [ {model: models.Product, as: 'product'}]
+            
+        });
     }
 
     async create(data) {
-        const newStorage =await model.Storage.create(data);
-        return newStorage;
+        return await this.model.create(data);
     }
 
-    async update(id, changes) {
-        const Storage = await this.findOne(id);
-        const response= await Storage.update(changes);
-        return response;
+    async update(id, data) {
+        const storage = await this.getById(id);
+        return await storage.update(data);
     }
 
     async delete(id) {
-        const Storage = await this.getById(id);
-        await Storage.destroy();
-        return {id};
+        const storage = await this.getById(id);
+        return await storage.destroy();
     }
+
+
+   
 }
 
 module.exports = StorageService;

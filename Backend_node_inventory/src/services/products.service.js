@@ -1,41 +1,32 @@
 const { models } = require('../libs/sequelize');
 
-
 class ProductService {
     constructor() {
 
-        
+        this.model = models.Product;
 
     }
 
     async getAll() {
-        const response=await models.Product.findAll();
-        return response;
+        return await this.model.findAll();
     }
 
     async getById(id) {
-        const product=await models.Product.findByPK({id});
-        if (!product){
-            console.log("Product couldn't be found")
-        }
-            return product;
+        return await this.model.findByPk(id);
     }
 
     async create(data) {
-        const newProduct =await model.Product.create(data);
-        return newProduct;
+        return await this.model.create(data);
     }
 
-    async update(id, changes) {
-        const product = await this.findOne(id);
-        const response= await product.update(changes);
-        return response;
+    async update(id, data) {
+        const product = await this.getById(id);
+        return await product.update(data);
     }
 
     async delete(id) {
         const product = await this.getById(id);
-        await product.destroy();
-        return {id};
+        return await product.destroy();
     }
 }
 

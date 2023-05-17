@@ -45,10 +45,6 @@ const ProductSchema = {
         allowNull: false,
         type: DataTypes.INTEGER,
     },
-    /*quantity:{
-        allowNull:false,
-        type:DataTypes.INTEGER,
-    },*/
     image :{
         allowNull: false,
         type: DataTypes.STRING,

@@ -37,7 +37,7 @@ const StorageSchema = {
 
 class Storage extends Model{
     static associate(models){
-        this.belongsTo(models.Product, {as: "Product", foreignKey: 'userId'})
+        this.belongsTo(models.Product, {as: "product", foreignKey: 'userId'})
     } 
 
     static config(sequelize){
