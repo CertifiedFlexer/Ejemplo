@@ -41,6 +41,11 @@ const ProductSchema = {
         allowNull: false,
         type: DataTypes.INTEGER,
     },
+    quantity:{
+        allowNull: true,
+        type: DataTypes.INTEGER,
+
+    },
     discount :{
         allowNull: false,
         type: DataTypes.INTEGER,
@@ -81,4 +86,4 @@ class Product extends Model{
     }
 }
 
-module.exports = {ProductSchema, Product};
+module.exports = {ProductSchema, Product, PRODUCT_TABLE};
