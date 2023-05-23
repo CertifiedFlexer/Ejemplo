@@ -1,5 +1,5 @@
 const {Model, DataTypes, Sequelize} = require('sequelize');
-
+const {STORAGE_TABLE}=require('./storage.model')
 const PRODUCT_TABLE = 'product';
 
 const ProductSchema = {
@@ -68,12 +68,24 @@ const ProductSchema = {
         allowNull: true,
         type: DataTypes.DATE,
         
-    }
+    },
+    storageId:{
+        allowNull: true,
+        type: DataTypes.INTEGER,
+        field:'storage_id',
+        unique: true,
+        references: {
+            model: STORAGE_TABLE,
+            key: 'id'
+         },
+         onUpdate: 'CASCADE',
+         onDelete: 'SET NULL',
+    },
 };
 
 class Product extends Model{
     static associate(){
-        //associate
+        this.belongsTo(models.Storage, {as: "storage", foreignKey: 'storageId'})
     } 
 
     static config(sequelize){

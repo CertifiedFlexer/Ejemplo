@@ -1,5 +1,4 @@
 const {Model, DataTypes, Sequelize, UniqueConstraintError} = require('sequelize');
-const {PRODUCT_TABLE}=require('./product.model')
 const STORAGE_TABLE = 'storage';
 
 const StorageSchema = {
@@ -21,23 +20,12 @@ const StorageSchema = {
         allowNull: false,
         type: DataTypes.INTEGER,
     },
-    userId:{
-        allowNull: false,
-        type: DataTypes.INTEGER,
-        field:'user_id',
-        unique: true,
-        references: {
-            model: PRODUCT_TABLE,
-            key: 'id'
-         },
-         onUpdate: 'CASCADE',
-         onDelete: 'SET NULL',
-    },
+   
 };
 
 class Storage extends Model{
     static associate(models){
-        this.belongsTo(models.Product, {as: "product", foreignKey: 'userId'})
+        
     } 
 
     static config(sequelize){
