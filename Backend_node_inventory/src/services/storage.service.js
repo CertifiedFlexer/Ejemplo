@@ -6,16 +6,11 @@ class StorageService {
     }
 
     async getAll() {
-        return await this.model.findAll({
-            include: [ {model: models.Product, as: 'product'}]
-        });
+        return await this.model.findAll();
     }
 
     async getById(id) {
-        return await this.model.findByPk(id,{
-            include: [ {model: models.Product, as: 'product'}]
-            
-        });
+        return await this.model.findByPk(id);
     }
 
     async create(data) {
