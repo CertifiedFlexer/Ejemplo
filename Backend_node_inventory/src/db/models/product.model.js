@@ -2,6 +2,7 @@ const {Model, DataTypes, Sequelize} = require('sequelize');
 const {STORAGE_TABLE}=require('./storage.model')
 const PRODUCT_TABLE = 'product';
 
+
 const ProductSchema = {
     id:{
         allowNull: false,
@@ -69,11 +70,10 @@ const ProductSchema = {
         type: DataTypes.DATE,
         
     },
-    storageId:{
+    storage_id:{
         allowNull: true,
         type: DataTypes.INTEGER,
-        field:'storage_id',
-        unique: true,
+        unique: false,
         references: {
             model: STORAGE_TABLE,
             key: 'id'
@@ -84,8 +84,8 @@ const ProductSchema = {
 };
 
 class Product extends Model{
-    static associate(){
-        this.belongsTo(models.Storage, {as: "storage", foreignKey: 'storageId'})
+    static associate(models){
+     this.belongsTo(models.Storage, {foreignKey: 'storage_id', as: 'storage'})
     } 
 
     static config(sequelize){

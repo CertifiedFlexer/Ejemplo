@@ -15,16 +15,12 @@ const StorageSchema = {
     address:{
         allowNull:false,
         type:DataTypes.STRING,
-    },
-    capacity:{
-        allowNull: false,
-        type: DataTypes.INTEGER,
-    },
+    }
    
 };
 
 class Storage extends Model{
-    static associate(models){
+    static associate(){
         
     } 
 

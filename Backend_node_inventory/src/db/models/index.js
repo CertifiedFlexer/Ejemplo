@@ -5,7 +5,7 @@ function setupModels(sequelize){
     Product.init(ProductSchema, Product.config(sequelize));
     Storage.init(StorageSchema, Storage.config(sequelize));
     
-    Storage.associate(sequelize.models)
+    Product.associate(sequelize.models);
 }
 
 module.exports =  setupModels ;
