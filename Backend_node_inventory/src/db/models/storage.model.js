@@ -20,7 +20,11 @@ const StorageSchema = {
 };
 
 class Storage extends Model{
-    static associate(){
+    static associate(models){
+        this.hasMany(models.Product,{
+            foreignKey: 'storage_id',
+            as: 'products',
+        });
         
     } 
 

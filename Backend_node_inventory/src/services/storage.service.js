@@ -10,7 +10,9 @@ class StorageService {
     }
 
     async getById(id) {
-        return await this.model.findByPk(id);
+        return await this.model.findByPk(id, 
+            { include: ['products'] }
+            );
     }
 
     async create(data) {
